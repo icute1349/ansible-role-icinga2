@@ -1,0 +1,10 @@
+[global]
+show_stacktraces = "1"
+config_backend = "db"
+config_resource = "{{ icinga2_icingaweb2_database.name }}"
+
+[logging]
+log = "syslog"
+level = "ERROR"
+application = "icingaweb2"
+facility = "user"

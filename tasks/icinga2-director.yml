@@ -1,0 +1,21 @@
+---
+- name: Check if director module is installed
+  stat:
+    path: /usr/share/icingaweb2/modules/director/
+  register: icinga2_director_module
+
+- name: Get icinga2 director
+  unarchive:
+    src: https://github.com/Icinga/icingaweb2-module-director/archive/master.zip
+    dest: /usr/share/icingaweb2/modules/grafana/
+    remote_src: True
+  when: not icinga2_director_module.stat.exists
+
+- name: Rename icinga2 director
+  shell: mv /usr/share/icingaweb2/modules/icingaweb2-module-director-master/ /usr/share/icingaweb2/modules/director/
+  when: not icinga2_director_module.stat.exists
+
+- name: Setup and enable icinga2 API
+  shell: icinga2 api setup
+  when: not icinga2_director_module.stat.exists
+  notify: Start Icinga2
