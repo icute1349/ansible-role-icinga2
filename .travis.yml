@@ -22,18 +22,18 @@ before_install:
 script:
   - container_id=$(mktemp)
   # Run container in detached state.
-  - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-icinga2:ro ${run_opts} geerlingguy/docker-${distro}-ansible:latest "${init}" > "${container_id}"'
+  - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/ansible-role-icinga2:ro ${run_opts} geerlingguy/docker-${distro}-ansible:latest "${init}" > "${container_id}"'
   # Ansible syntax check.
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install geerlingguy.mysql'
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install geerlingguy.apache'
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/ansible-icinga2/tests/${playbook} --syntax-check'
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/ansible-role-icinga2/tests/${playbook} --syntax-check'
   # Running playbook
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm yum install -y epel-release'
-  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-icinga2/tests/${playbook} ${debug_ansible}'
+  - 'docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-role-icinga2/tests/${playbook} ${debug_ansible}'
 
   # Test role idempotence.
   #- idempotence=$(mktemp)
-  #- docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-icinga2/tests/${playbook} | tee -a ${idempotence}
+  #- docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-role-icinga2/tests/${playbook} | tee -a ${idempotence}
   #- >
   #  tail ${idempotence}
   #  | grep -q 'changed=0.*failed=0'
