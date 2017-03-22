@@ -14,3 +14,12 @@
 - name: Rename icinga2 grafana
   shell: mv /usr/share/icingaweb2/modules/icingaweb2-module-grafana-master/ /usr/share/icingaweb2/modules/grafana/
   when: not icinga2_grafana_module.stat.exists
+
+- name: Enable modules
+  file:
+    src: /usr/share/icingaweb2/modules/grafana
+    dest: /etc/icingaweb2/enabledModules/grafana
+    state: link
+    force: yes
+    owner: apache
+    group: icingaweb2
