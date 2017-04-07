@@ -2,7 +2,8 @@
 system_dependencies:
   - unzip
   - epel-release
-  
+  - mariadb-server
+
 icinga2_dependencies:
   - MySQL-python
   - python-pip
