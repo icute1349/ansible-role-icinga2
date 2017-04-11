@@ -6,7 +6,7 @@ env:
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     playbook: test.yml
-    debug_ansible:
+    debug_ansible: -vvvv
   #- distro: centos6
   #  init: /sbin/init
   #  run_opts: ""

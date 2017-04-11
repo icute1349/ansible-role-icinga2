@@ -12,7 +12,7 @@ This role is compatible by settings var and role with :
 
 Install of Icingaweb2
 
- - After install you will need to setup requirement above and finish the install at http://IP/icingaweb2/setup
+ - Ready to go at http://IP/icingaweb2/
 
 Compatibility
 -------------
@@ -42,6 +42,11 @@ Role Variables
     icinga2_icinga2influxdb: boolean
     icinga2_icinga_snmp_check: boolean
     icinga2_icinga2influxdb: boolean
+    icinga2_database:
+      name: icinga2
+      user: icinga2
+      password: icinga2dbpasswd
+      host: localhost
 ```
 
 Dependencies
