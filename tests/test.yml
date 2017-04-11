@@ -43,7 +43,7 @@
 # [[ Roles Def ]]
   roles:
     -
-      role: ansible-mysql
+      role: geerlingguy.mysql
     -
       role: ansible-role-icinga2
 
