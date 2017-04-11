@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/bashrc666/ansible-icinga2.svg?branch=master)](https://travis-ci.org/bashrc666/ansible-icinga2)
+[![Build Status](https://travis-ci.org/bashrc666/ansible-role-icinga2.svg?branch=master)](https://travis-ci.org/bashrc666/ansible-role-icinga2)
 
-Icinga2
-=========
+Ansible-Role-Icinga2
+=======
 
 This role is compatible by settings var and role with :
 
