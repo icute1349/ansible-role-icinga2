@@ -26,11 +26,6 @@
     disable_gpg_check: yes
     #update_cache: yes
 
-- name: Check Mysql server is running
-  systemd:
-    name: mariadb
-    state: started
-
 - name: check if DB exists
   shell: mysql -b {{ icinga2_database.name }} -e 'SHOW TABLES;' | grep icinga_acknowledgements | wc -l
   register: dbstatus
