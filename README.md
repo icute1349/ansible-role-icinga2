@@ -66,6 +66,13 @@ Example Playbook
     - icinga2
 ```
 
+TODO
+----
+
+- Automate icingadirector 
+[DOCS (https://github.com/Icinga/icingaweb2-module-director/blob/master/doc/03-Automation.md)]
+
+
 License
 -------
 
