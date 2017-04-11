@@ -33,7 +33,7 @@ script:
 
 after_failure:
   - 'docker exec "$(cat ${container_id})" ls -larth /usr/share/doc/'
-  - 'docker exec "$(cat ${container_id})" ls -larth /usr/share/doc/icingaweb2'
+  - 'docker exec "$(cat ${container_id})" ls -larth /usr/share/doc/icingaweb2/schema/'
   # Test role idempotence.
   #- idempotence=$(mktemp)
   #- docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/ansible-role-icinga2/tests/${playbook} | tee -a ${idempotence}

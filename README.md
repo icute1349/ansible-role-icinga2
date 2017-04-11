@@ -23,7 +23,9 @@ Requirements
 ------------
 
 - Mysql roles
-
+```
+  ansible-galaxy install geerlingguy.mysql
+```
 
 For CentOS :
  - Disable selinux or make your own policies
@@ -62,7 +64,10 @@ Example Playbook
     icinga2_icinga2influxdb: True
 # [[ Roles Def ]
   roles:
-    - icinga2
+    -
+        role: geerlingguy.mysql
+    - 
+        role: ansible-role-icinga2
 ```
 
 TODO
