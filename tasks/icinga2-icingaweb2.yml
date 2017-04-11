@@ -34,10 +34,6 @@
   shell: icingacli setup token show
   register: icinga2_icingaweb2_token
 
-- name: Debug register
-  debug:
-    msg: "{{ icinga2_icingaweb2_token | regex_replace('^The\ current\ setup\ token\ is\\: (.*)', '\\1') }}"
-
 - name: "check if {{ icinga2_icingaweb2_database.name }} DB exists"
   shell: mysql -b {{ icinga2_icingaweb2_database.name }} -e 'SHOW TABLES;' | grep icingaweb_group | wc -l
   register: dbstatus

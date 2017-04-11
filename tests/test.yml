@@ -6,6 +6,11 @@
     icinga2_grafana: False
     icinga2_snmp_check: True
     icinga2_icingaweb2: True
+    icinga2_database:
+      name: icinga2
+      user: icinga2
+      password: icinga2dbpasswd
+      host: localhost
     mysql_databases:
       - name: "{{ icinga2_database.name }}"
         encoding: utf8

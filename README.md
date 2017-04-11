@@ -55,19 +55,49 @@ Example Playbook
 ----------------
 
 ```
-- hosts: all
-  become: yes
+---
+- hosts: localhost
+  remote_user: root
   vars:
-# [[ Icingaweb2 ]]
+    icinga2_director: False
+    icinga2_grafana: False
+    icinga2_snmp_check: True
     icinga2_icingaweb2: True
-    icinga2_icinga_snmp_check: True
-    icinga2_icinga2influxdb: True
-# [[ Roles Def ]
+    icinga2_database:
+      name: icinga2
+      user: icinga2
+      password: icinga2dbpasswd
+      host: localhost
+    mysql_databases:
+      - name: "{{ icinga2_database.name }}"
+        encoding: utf8
+        collation: utf8_general_ci
+      - name: icingaweb2
+        encoding: utf8
+        collation: utf8_general_ci
+      - name: director
+        encoding: utf8
+        collation: utf8_general_ci
+    mysql_users:
+      - name: "{{ icinga2_database.user }}"
+        host: "{{ icinga2_database.host }}"
+        password: "{{ icinga2_database.password }}"
+        priv: "{{ icinga2_database.name }}.*:ALL"
+      - name: "{{ icinga2_icingaweb2_database.user }}"
+        host: "{{ icinga2_icingaweb2_database.host }}"
+        password: "{{ icinga2_icingaweb2_database.password }}"
+        priv: "icingaweb2.*:ALL"
+      - name: director
+        host: "localhost"
+        password: directordbpasswd
+        priv: "director.*:ALL"
   roles:
     -
-        role: geerlingguy.mysql
-    - 
-        role: ansible-role-icinga2
+      role: geerlingguy.mysql
+    -
+      role: geerlingguy.apache
+    -
+      role: ansible-role-icinga2
 ```
 
 TODO
