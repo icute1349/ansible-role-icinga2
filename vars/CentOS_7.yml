@@ -1,6 +1,7 @@
 ---
 system_dependencies:
   - unzip
+  - epel-release
 
 icinga2_dependencies:
   - MySQL-python

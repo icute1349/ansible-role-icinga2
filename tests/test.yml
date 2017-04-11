@@ -2,8 +2,8 @@
 - hosts: localhost
   remote_user: root
   vars:
-    icinga2_director: True
-    icinga2_grafana: True
+    icinga2_director: False
+    icinga2_grafana: False
     icinga2_snmp_check: True
     icinga2_icingaweb2: True
     mysql_databases:

@@ -4,7 +4,7 @@ Icinga2
 =========
 
 This role is compatible by settings var and role with :
- 
+
  - Influxdb
  - manubulon snmp-plugin
  - Icingaweb2
@@ -36,10 +36,10 @@ Role Variables
 
 ```
 # [[ Icingaweb2 ]]
-    icingaweb2: boolean
-    icinga2influxdb: boolean
-    icinga_snmp_check: boolean
-    icinga2influxdb: boolean
+    icinga2_icingaweb2: boolean
+    icinga2_icinga2influxdb: boolean
+    icinga2_icinga_snmp_check: boolean
+    icinga2_icinga2influxdb: boolean
 ```
 
 Dependencies
@@ -57,10 +57,9 @@ Example Playbook
   become: yes
   vars:
 # [[ Icingaweb2 ]]
-    icingaweb2: True
-    icinga2influxdb: True
-    icinga_snmp_check: True
-    icinga2influxdb: True
+    icinga2_icingaweb2: True
+    icinga2_icinga_snmp_check: True
+    icinga2_icinga2influxdb: True
 # [[ Roles Def ]
   roles:
     - icinga2

@@ -12,7 +12,7 @@
     name: "{{ icinga2_dependencies | join(',') }}"
     state: present
     disable_gpg_check: yes
-    #update_cache: yes
+    update_cache: yes
 
 - name: Install icinga repo
   copy:
