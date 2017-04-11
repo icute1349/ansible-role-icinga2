@@ -22,9 +22,13 @@ Compatibility
 Requirements
 ------------
 
-- Mysql roles
+- Mysql role
 ```
   ansible-galaxy install geerlingguy.mysql
+```
+- PHP role
+```
+  ansible-galaxy install geerlingguy.php
 ```
 
 For CentOS :
@@ -61,18 +65,17 @@ Example Playbook
 
 ```
 ---
-- hosts: localhost
-  remote_user: root
+- hosts: icinga2
+  become: yes
   vars:
-    icinga2_director: False
-    icinga2_grafana: False
-    icinga2_snmp_check: True
-    icinga2_icingaweb2: True
+# [[ Mysql Config icinga2 ]]
+    mysql_root_password: TEST
     icinga2_database:
       name: icinga2
       user: icinga2
       password: icinga2dbpasswd
       host: localhost
+# [[ Mysql Config ]]
     mysql_databases:
       - name: "{{ icinga2_database.name }}"
         encoding: utf8
@@ -88,21 +91,36 @@ Example Playbook
         host: "{{ icinga2_database.host }}"
         password: "{{ icinga2_database.password }}"
         priv: "{{ icinga2_database.name }}.*:ALL"
-      - name: "{{ icinga2_icingaweb2_database.user }}"
-        host: "{{ icinga2_icingaweb2_database.host }}"
-        password: "{{ icinga2_icingaweb2_database.password }}"
+      - name: icingaweb2
+        host: "localhost"
+        password: icingaweb2dbpasswd
         priv: "icingaweb2.*:ALL"
       - name: director
         host: "localhost"
         password: directordbpasswd
         priv: "director.*:ALL"
+# [[ Icinga2 Config ]]
+    icinga2_director: True
+    icinga2_icingaweb2_fqdn: localhost
+    icinga2_icingaweb2: True
+    icinga_snmp_check: True
+    icinga2influxdb: True
+    icinga2livestatus: False
+# [[ PHP Config ]]
+    php_packages:
+      - php-ldap
+      - php-pdo
+      - php-mysql
+      - php-intl
+# [[ Roles Def ]]
   roles:
     -
       role: geerlingguy.mysql
     -
-      role: geerlingguy.apache
+      role: geerlingguy.php
     -
       role: ansible-role-icinga2
+
 ```
 
 TODO

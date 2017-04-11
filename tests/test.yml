@@ -40,11 +40,17 @@
     icinga_snmp_check: True
     icinga2influxdb: True
     icinga2livestatus: False
+# [[ PHP Config ]]
+    php_packages:
+      - php-ldap
+      - php-pdo
+      - php-mysql
+      - php-intl
 # [[ Roles Def ]]
   roles:
     -
       role: geerlingguy.mysql
     -
+      role: geerlingguy.php
+    -
       role: ansible-role-icinga2
-
-

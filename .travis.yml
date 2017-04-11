@@ -6,7 +6,7 @@ env:
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     playbook: test.yml
-    debug_ansible: -vvvv
+    debug_ansible:
   #- distro: centos6
   #  init: /sbin/init
   #  run_opts: ""
@@ -26,6 +26,7 @@ script:
   # Ansible syntax check.
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install geerlingguy.mysql'
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install geerlingguy.apache'
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install geerlingguy.php'
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/ansible-role-icinga2/tests/${playbook} --syntax-check'
   # Running playbook
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm yum install -y epel-release'
